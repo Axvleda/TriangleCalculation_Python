@@ -29,10 +29,10 @@ def HeightOfSideATriangle(a, b, c):
     # print(f'Sidelength "A" is {a} | Height from Side "A" is {height}.')
     return height
 
-def random_Iterator():
-    myInt = random.uniform(3.0, 10.0)
-    # print(f'\rMy random side length to get checked is: {myInt}.')
-    return myInt
+def write2file(String):
+    f = open("triangle_data.txt", "a")
+    f.write(String)
+    f.close()
 
 
 def Check_HeightAndSides(treshold, myFloat):
@@ -47,6 +47,9 @@ def Check_HeightAndSides(treshold, myFloat):
             sys.stdout.write("\b\r" + myString)
             sys.stdout.flush()
 
+            String_Point = f"{myFloat}, {height}, {remainder_side}, {remainder_height}"
+            write2file(String_Point + "\n")
+
             return True
         else:
             myString = f"Side A = %.3f | Not exact enough ({treshold}) ~ rem = {remainder_height} | {remainder_side} " %myFloat
@@ -60,24 +63,19 @@ def Check_HeightAndSides(treshold, myFloat):
 if __name__ == '__main__':
     print_hi('Triangle Calculation')
 
+    while True:
 
-# #Random Check
-# while True:
-#     if Check_HeightAndSides(.04):
-#         break
+        for i in range(300, 15000, 1): # given in millimeters
 
 
-while True:
+            i = i/100
+            if Check_HeightAndSides(.05, i):
 
-    for i in range(300, 15000, 1): # given in millimeters
+                print("\n")
+
+        break
 
 
-        i = i/100
-        if Check_HeightAndSides(.05, i):
-
-            print("\n")
-
-    break
 
 
 
