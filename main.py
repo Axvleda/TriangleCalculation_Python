@@ -47,7 +47,7 @@ def Side_Check(remainder_side):
     return newSide
 
 def Height_Check(remainder_height):
-    Height = min(remainder_height, float(1-remainder_height))
+    Height = min(remainder_height, float(.5-remainder_height))
     # print(f"normal = {remainder_height} | extra = {float(1-remainder_height)}")
     sqHeight = float(Height) * float(Height)
     # print(f"sqHeight = {sqHeight}")
@@ -59,7 +59,7 @@ def Check_HeightAndSides(treshold, myFloat):
     if Triangle_Check(myFloat, myFloat, myFloat):
         height = HeightOfSideATriangle(myFloat, myFloat, myFloat)
 
-        remainder_height = height % 1
+        remainder_height = height % .5
         remainder_side = myFloat % .5
 
         new_remainder_height = Height_Check(remainder_height)
@@ -94,10 +94,14 @@ if __name__ == '__main__':
 
 
             i = i/100
-            if Check_HeightAndSides(.02, i):
+            if Check_HeightAndSides(.01, i):
 
                 print("\n")
 
+        # open and read the file after the appending:
+        f = open("triangle_data.txt", "r")
+        myLine = f.read()
+        print(f"The total length of worthy combinations is {len(myLine)}.")
         break
 
 

@@ -71,4 +71,4 @@ if __name__ == '__main__':
         r.append(counter)
         counter += 1
 
-    drawGraph()
+    # drawGraph()
