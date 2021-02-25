@@ -41,7 +41,7 @@ def write2file(String):
 #     print(f"height = {newHeight * newHeight} | side = {newSide * newSide}")
 
 def Side_Check(remainder_side):
-    Side = min(remainder_side, float(1-remainder_side))
+    Side = min(remainder_side, float(.5-remainder_side))
     sqSide = float(Side) * float(Side)
     newSide = float(math.sqrt(sqSide))
     return newSide
@@ -94,7 +94,7 @@ if __name__ == '__main__':
 
 
             i = i/100
-            if Check_HeightAndSides(.03, i):
+            if Check_HeightAndSides(.02, i):
 
                 print("\n")
 

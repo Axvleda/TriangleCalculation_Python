@@ -48,7 +48,7 @@ if __name__ == '__main__':
     for i in myLine:
         Side_A = i.split(",")[0]
         Height_A = i.split(",")[1]
-        names.append(str(f"Side A = {Side_A} | Height A = {Height_A}"))
+        names.append(str(f"Side A = {round(float(Side_A), 3)} | Height A = {round(float(Height_A), 3)}"))
 
         accuracy_side = float(i.split(",")[2])
         bars1.append(float(accuracy_side))
