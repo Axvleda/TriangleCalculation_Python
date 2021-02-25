@@ -34,6 +34,26 @@ def write2file(String):
     f.write(String)
     f.close()
 
+# def Checker(remainder_height, remainder_side):
+#     newHeight = min(remainder_height, float(1-remainder_height))
+#     newSide = min(remainder_side, float(1-remainder_side))
+#
+#     print(f"height = {newHeight * newHeight} | side = {newSide * newSide}")
+
+def Side_Check(remainder_side):
+    Side = min(remainder_side, float(1-remainder_side))
+    sqSide = float(Side) * float(Side)
+    newSide = float(math.sqrt(sqSide))
+    return newSide
+
+def Height_Check(remainder_height):
+    Height = min(remainder_height, float(1-remainder_height))
+    # print(f"normal = {remainder_height} | extra = {float(1-remainder_height)}")
+    sqHeight = float(Height) * float(Height)
+    # print(f"sqHeight = {sqHeight}")
+    newHeight = float(math.sqrt(sqHeight))
+    # print(f"rootHeight = {newHeight}")
+    return newHeight
 
 def Check_HeightAndSides(treshold, myFloat):
     if Triangle_Check(myFloat, myFloat, myFloat):
@@ -41,18 +61,23 @@ def Check_HeightAndSides(treshold, myFloat):
 
         remainder_height = height % 1
         remainder_side = myFloat % .5
-        if remainder_height < treshold and remainder_side < treshold:
+
+        new_remainder_height = Height_Check(remainder_height)
+        new_remainder_side = Side_Check(remainder_side)
+
+
+        if new_remainder_height < treshold and new_remainder_side < treshold:
             print("\rpossible Solution found!")
-            myString = f'Side A = %.3f | Height A = {height} | accuracy_side = {remainder_side} | accuracy_height = {remainder_height}' %myFloat
+            myString = f'Side A = %.3f | Height A = {height} | accuracy_side = {new_remainder_side} | accuracy_height = {new_remainder_height}' %myFloat
             sys.stdout.write("\b\r" + myString)
             sys.stdout.flush()
 
-            String_Point = f"{myFloat}, {height}, {remainder_side}, {remainder_height}"
+            String_Point = f"{myFloat}, {height}, {new_remainder_side}, {new_remainder_height}"
             write2file(String_Point + "\n")
 
             return True
         else:
-            myString = f"Side A = %.3f | Not exact enough ({treshold}) ~ rem = {remainder_height} | {remainder_side} " %myFloat
+            myString = f"Side A = %.3f | Not exact enough ({treshold}) ~ rem = {new_remainder_height} | {new_remainder_side} " %myFloat
             sys.stdout.write(myString + "\r")
             sys.stdout.flush()
             return False
@@ -69,7 +94,7 @@ if __name__ == '__main__':
 
 
             i = i/100
-            if Check_HeightAndSides(.05, i):
+            if Check_HeightAndSides(.03, i):
 
                 print("\n")
 
