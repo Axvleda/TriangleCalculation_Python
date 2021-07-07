@@ -42,7 +42,7 @@ if __name__ == '__main__':
     ######################
 
     # open and read the file after the appending:
-    f = open("triangle_data.txt", "r")
+    f = open("triangle_data_sketch.txt", "r")
     myLine = f.readlines()
 
     for i in myLine:

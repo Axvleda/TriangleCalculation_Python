@@ -1,6 +1,7 @@
 
-# Press Umschalt+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+# Project will be continued to find best combination for area message
+
+# TODO: Implement Area Message
 
 
 import math
@@ -30,7 +31,7 @@ def HeightOfSideATriangle(a, b, c):
     return height
 
 def write2file(String):
-    f = open("triangle_data.txt", "a")
+    f = open("triangle_data_sketch.txt", "a")
     f.write(String)
     f.close()
 
@@ -54,6 +55,9 @@ def Height_Check(remainder_height):
     newHeight = float(math.sqrt(sqHeight))
     # print(f"rootHeight = {newHeight}")
     return newHeight
+
+
+# Todo: important Part Starts here!
 
 def Check_HeightAndSides(treshold, myFloat):
     if Triangle_Check(myFloat, myFloat, myFloat):
@@ -99,7 +103,7 @@ if __name__ == '__main__':
                 print("\n")
 
         # open and read the file after the appending:
-        f = open("triangle_data.txt", "r")
+        f = open("triangle_data_sketch.txt", "r")
         myLine = f.read()
         print(f"The total length of worthy combinations is {len(myLine)}.")
         break
