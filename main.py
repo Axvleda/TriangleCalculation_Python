@@ -102,19 +102,12 @@ def Side_Height_Area(side_a):
     return combination
 
 
-def quickstart(i, worthy_StellenAnzahl):
-    side_a_StellenAnzahl = len(str(i))
-    if (side_a_StellenAnzahl < worthy_StellenAnzahl):
-        sys.stdout.write(f"{i} break")
-        sys.stdout.flush()
-        i = int(str(1) + (str(worthy_StellenAnzahl * "0"))) + 1
-        return i
 
 
 def reason_to_break(combination, worthy, i):
     #     if any of the numbers with dezimalstellen or ohne enthält WorthyCombination
 
-    for comb in combination[2:]:
+    for comb in combination[1:2]:
 
         combination_remainder = (comb % 1)
         worthy_StellenAnzahl = len(str(worthy))
@@ -123,39 +116,30 @@ def reason_to_break(combination, worthy, i):
         comb_afterDecimal = str((combination_remainder * (10 ** worthy_StellenAnzahl) + 1)).split(".")[0]
         comb_afterDecimal_Stellen = len(str(comb_afterDecimal))
 
-        ## debug info
-        # sys.stdout.write(
-        #     f"\r\b\rStart:{i}. Side = {combination[0]}\t| Height = {combination[1]:8}\t| Area = {float(combination[2]):8}\t "
-        #     f"| Worthy = {worthy}\t | Stellen: {worthy_StellenAnzahl} "
-        #     f"\t Comb_beforeDecimal = {comb_beforeDecimal}\t | Stellen: {comb_beforeDecimal_Stellen}\t | "
-        #     f"Comb_afterDecimal = {comb_afterDecimal}\t | Stellen: {comb_afterDecimal_Stellen}.")
-        # sys.stdout.flush()
 
-        # starte bei i größer als worthy
-        # myint = int((str("1") + worthy_StellenAnzahl * str("0")))
 
         if (comb_afterDecimal) == str(worthy):
             sys.stdout.write(
-                f"\rStart:{i}. Side = {combination[0]}\t| Height = {combination[1]:8}\t| Area = {float(combination[2]):8}\t "
-                f"| Worthy = {worthy}\t | Stellen: {worthy_StellenAnzahl} "
+                f"\nStart:{i}. Side = {combination[0]}\t| Height = {combination[1]:8}\t| Area = {float(combination[2]):8}\t "
+                f"| Worthy = {worthy}\n | Stellen: {worthy_StellenAnzahl} "
                 f"\t Comb_beforeDecimal = {comb_beforeDecimal}\t | Stellen: {comb_beforeDecimal_Stellen}\t | "
-                f"Comb_afterDecimal = {comb_afterDecimal}\t | Stellen: {comb_afterDecimal_Stellen}.")
+                f"Comb_afterDecimal = {comb_afterDecimal}\t | Stellen: {comb_afterDecimal_Stellen}.\n")
 
+            sys.stdout.flush()
             return True
 
         elif (comb_beforeDecimal) == str(worthy):
             sys.stdout.write(
-                f"\r\b\rStart:{i}. Side = {combination[0]}\t| Height = {combination[1]:8}\t| Area = {float(combination[2]):8}\t "
-                f"| Worthy = {worthy}\t | Stellen: {worthy_StellenAnzahl} "
+                f"\nStart:{i}. Side = {combination[0]}\t| Height = {combination[1]:8}\t| Area = {float(combination[2]):8}\t "
+                f"| Worthy = {worthy}\n | Stellen: {worthy_StellenAnzahl} "
                 f"\t Comb_beforeDecimal = {comb_beforeDecimal}\t | Stellen: {comb_beforeDecimal_Stellen}\t | "
-                f"Comb_afterDecimal = {comb_afterDecimal}\t | Stellen: {comb_afterDecimal_Stellen}.")
+                f"Comb_afterDecimal = {comb_afterDecimal}\t | Stellen: {comb_afterDecimal_Stellen}.\n")
+
+            sys.stdout.flush()
 
             return True
 
         else:
-
-            sys.stdout.write(f"\r {i}")
-            sys.stdout.flush()
             return False
 
 
@@ -163,42 +147,18 @@ def reason_to_break(combination, worthy, i):
 if __name__ == '__main__':
     print_hi('Triangle Calculation')
 
-WorthyCombinations = [703193977868615, 19940204, 19920813, 20201226]  # Test
+# WorthyCombinations = [703193977868615, 19940204, 19920813, 20201226]  # Test
 
-# WorthyCombinations = [940204, 19920813, 20201226]
+WorthyCombinations = [940204, 19920813, 20201226]
 
-for i in range(1, sys.maxsize):
-
-    for worthy in WorthyCombinations:
-        # i = int(quickstart(i, len(str(worthy))))
+for worthy in WorthyCombinations:
+    worthy_StellenAnzahl = len(str(worthy))
+    quickstart = (int(str(worthy)[0])*10)*worthy_StellenAnzahl
+    for i in range(quickstart, sys.maxsize):
         combination = Side_Height_Area(i)
-        if (reason_to_break(combination, WorthyCombinations, i)):
+        if (reason_to_break(combination, worthy, i)):
             print("\n\nSuccess\n\n")
             break
-
-# for i in range(1600):
-#     combination = iter(Side_Height_Area(i))
-#     if combination != 15:
-#         combination.next()
-
-# import itertools
-# for i in itertools.count():
-#     if reason_to_break(i):
-#         height_a = Height_A(side_a)
-#         area = Area_A(side_a, height_a)
-#
-#         sys.stdout.write(f"\rSide = {side_a} | Height = {height_a} | Area = {float(area)}")
-#         sys.stdout.flush()
-
-# while True:
-#
-#     for i in range(1, 15000, 1): # Boundaries g
-#
-#
-#         i = i/100
-#         if Check_HeightAndSides(.01, i):
-#
-#             print("\n")
 #
 #     # open and read the file after the appending:
 #     f = open("triangle_data_sketch.txt", "r")
