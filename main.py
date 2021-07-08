@@ -117,6 +117,7 @@ def reason_to_break(combination, worthyCombination):
     for comb in combination[1:]:
         for worthy in worthyCombination:
             if int(comb) and ((comb % 1) * 1000  == worthy:
+# TODO: Finish this
 
                 print("\m")
                 return True
